@@ -52,12 +52,11 @@ const removeContact = async (contactId) => {
 
    if (contactIndex === -1) {
       return null;
-   } else {
-      const removedContact = allContacts.splice(contactIndex, 1);
-      await fs.writeFile(contactsPath, JSON.stringify(allContacts, null, 2));
-      console.log(removedContact);
-      return removedContact[0];
    }
+
+   const removedContact = allContacts.splice(contactIndex, 1);
+   await fs.writeFile(contactsPath, JSON.stringify(allContacts, null, 2));
+   return removedContact[0];
 };
 
 module.exports = {
