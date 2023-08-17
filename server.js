@@ -1,6 +1,5 @@
 const app = require("./app");
 const mongoose = require("mongoose");
-
 const DB_HOST =
    "mongodb+srv://PolinaTs:KLU5gHlEqB91TOy7@cluster0.ueow4ph.mongodb.net/contacts_app?retryWrites=true&w=majority";
 
