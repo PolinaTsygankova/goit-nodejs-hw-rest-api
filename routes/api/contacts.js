@@ -64,7 +64,7 @@ router.patch("/:contactId/favorite", async (req, res, next) => {
       const { error } = schemas.updateFavoriteSchema.validate(req.body);
 
       if (error) {
-         res.status(400).json({ message: "Missing fields" });
+         res.status(400).json({ message: "Missing field favorite" });
       }
 
       const contactId = req.params.contactId;
