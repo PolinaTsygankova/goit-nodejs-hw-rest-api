@@ -7,7 +7,7 @@ const {
    update,
    updateFavorite,
    deleteOne,
-} = require("../../controllers/contacts.js");
+} = require("../../controllers/contacts");
 const isValidId = require("../../middlewares/isValidId");
 const validateBody = require("../../middlewares/validateBody");
 const router = express.Router();

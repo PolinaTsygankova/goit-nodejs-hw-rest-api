@@ -13,6 +13,7 @@ const updateFavoriteScheme = Joi.object({
 });
 
 const schemas = {
+   
    addSchema,
    updateFavoriteScheme,
 };
