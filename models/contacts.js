@@ -13,7 +13,6 @@ const updateFavoriteScheme = Joi.object({
 });
 
 const schemas = {
-   
    addSchema,
    updateFavoriteScheme,
 };
@@ -33,6 +32,10 @@ const contactShema = Schema(
       favorite: {
          type: Boolean,
          default: false,
+      },
+      owner: {
+         type: Schema.Types.ObjectId,
+         ref: "user",
       },
    },
    { versionKey: false, timestaps: true }

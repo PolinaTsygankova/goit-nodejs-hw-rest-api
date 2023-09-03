@@ -1,8 +1,19 @@
 const express = require("express");
-// const { schemas } = require("../../models/contacts");
-const { registration } = require("../../controllers/auth");
+const {
+   registration,
+   login,
+   getCurrent,
+   logout,
+} = require("../../controllers/auth");
+const validateToken = require("../../middlewares/validateToken");
 const router = express.Router();
 
-router.post("/", registration);
+router.post("/register", registration);
+
+router.post("/login", login);
+
+router.get("/current", validateToken, getCurrent);
+
+router.post("/logout", validateToken, logout);
 
 module.exports = router;

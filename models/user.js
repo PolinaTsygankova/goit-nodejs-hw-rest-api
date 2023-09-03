@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const userShema = Schema(
+const userSсhema = Schema(
    {
       password: {
          type: String,
@@ -23,11 +23,11 @@ const userShema = Schema(
    { versionKey: false, timestaps: true }
 );
 
-userShema.post("save", (error, data, next) => {
+userSсhema.post("save", (error, data, next) => {
    error.status = 400;
    next();
 });
 
-const User = model("user", userShema);
+const User = model("user", userSсhema);
 
 module.exports = { User };

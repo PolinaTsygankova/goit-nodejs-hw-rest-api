@@ -22,17 +22,6 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-   console.log(err.name);
-   console.log(err.status);
-
-   if (err.message.includes("E11000 duplicate key")) {
-      return res.status(409).json({ message: "This data is already saved!" });
-   }
-
-   if (err.message === "ValidationError") {
-      return res.status(400).json({ message: "Not valid data" });
-   }
-
    res.status(500).json({ message: err.message });
 });
 

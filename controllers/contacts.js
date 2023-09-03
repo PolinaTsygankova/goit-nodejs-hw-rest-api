@@ -2,7 +2,14 @@ const { Contact } = require("../models/contacts");
 
 const getAll = async (req, res) => {
    try {
-      const contacts = await Contact.find();
+      const { page = 1, limit = 10 } = req.query;
+      const skip = (page - 1) * limit;
+
+      const { _id: owner } = req.user;
+      const contacts = await Contact.find({ owner }, "-createdAt, -updatedAt", {
+         skip,
+         limit,
+      }).populate("owner", "name email");
       res.status(200).json(contacts);
    } catch (error) {
       res.status(404).json({ message: "Not found" });
@@ -22,10 +29,11 @@ const getOne = async (req, res) => {
 
 const add = async (req, res) => {
    try {
-      const createdContact = await Contact.create(req.body);
+      const { _id: owner } = req.user;
+      const createdContact = await Contact.create({ ...req.body, owner });
       res.status(201).json(createdContact);
    } catch (error) {
-      res.status(400).json({ message: "Missing required name field" });
+      res.status(400).json({ error: error.message });
    }
 };
 
