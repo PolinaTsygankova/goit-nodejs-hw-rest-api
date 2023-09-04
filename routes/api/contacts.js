@@ -7,26 +7,33 @@ const {
    update,
    updateFavorite,
    deleteOne,
-} = require("../../controllers/contacts.js");
+} = require("../../controllers/contacts");
 const isValidId = require("../../middlewares/isValidId");
 const validateBody = require("../../middlewares/validateBody");
+const validateToken = require("../../middlewares/validateToken");
 const router = express.Router();
 
-router.get("/", getAll);
+router.get("/", validateToken, getAll);
 
-router.get("/:contactId", isValidId, getOne);
+router.get("/:contactId", validateToken, isValidId, getOne);
 
-router.post("/", validateBody(schemas.addSchema), add);
+router.post("/", validateToken, validateBody(schemas.addSchema), add);
 
-router.put("/:contactId", validateBody(schemas.addSchema), update);
+router.put(
+   "/:contactId",
+   validateToken,
+   validateBody(schemas.addSchema),
+   update
+);
 
 router.patch(
    "/:contactId/favorite",
+   validateToken,
    isValidId,
    validateBody(schemas.updateFavoriteScheme),
    updateFavorite
 );
 
-router.delete("/:contactId", isValidId, deleteOne);
+router.delete("/:contactId", validateToken, isValidId, deleteOne);
 
 module.exports = router;
