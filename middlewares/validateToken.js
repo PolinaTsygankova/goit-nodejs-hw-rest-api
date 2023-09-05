@@ -5,8 +5,6 @@ const { User } = require("../models/user");
 const validateToken = async (req, res, next) => {
    const { authorization = "" } = req.headers;
    const [bearer, token] = authorization.split(" ");
-   console.log(bearer);
-   console.log(token);
 
    if (bearer !== "Bearer") {
       return res.status(401).json({ message: "Token type isn't valid" });
